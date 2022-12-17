@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  mikroways_db:
+    image: postgres:15.1-alpine
+    volumes:
+      - data_mikroways:/var/lib/postgresql/data/
+      - ../db/:/db
+    environment:
+      POSTGRES_PASSWORD: mikroways
+      POSTGRES_USER: root
+      POSTGRES_DB: mikroways
+    container_name: mikroways_db
+    ports:
+      - 5432:5432
+  mikroways_backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.local
+    volumes:
+      - ../:/usr/src/app/
+    ports:
+      - 8005:8000
+    environment:
+      POSTGRES_NAME: mikroways
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: mikroways
+      POSTGRES_HOST: mikroways_db
+      POSTGRES_PORT: 5432
+      DJANGO_SETTINGS_MODULE: mikroways_prueba.settings
+      DJANGO_SECRET_KEY: dsadsadds
+      DJANGO_MODE_DEBUG: 1
+    depends_on:
+      - mikroways_db
+    container_name: mikroways_backend
+volumes:
+  data_mikroways:
