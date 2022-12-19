@@ -3,10 +3,12 @@ set -eo pipefail
 
 cd /usr/src/app/mikroways_prueba/
 
-#django-admin startproject mikroways_prueba
+# django-admin startproject mikroways_prueba
 echo "Apply database migrations"
 python manage.py migrate --settings=${DJANGO_SETTINGS_MODULE}
+python manage.py init_users
 
+python manage.py collectstatic --noinput
 # Start server
 echo "Starting server"
-gunicorn -b 0.0.0.0:8000 --reload --workers=3 --threads=3 --worker-connections=1000 --worker-class=gthread --access-logfile - --error-logfile - --log-level debug mikroways_prueba.wsgi
+python manage.py runserver 0.0.0.0:8000
