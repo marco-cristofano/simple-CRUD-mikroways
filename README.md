@@ -1,5 +1,5 @@
 #  MIKRO WAYS - Frameworks de desarrollo
-El presente documento contiene los pasos necesarios para inicializar el backend el CRUD requerido en el ejercicio de Frameworks de desarrollo.
+El presente documento contiene los pasos necesarios para inicializar el backend el CRUD requerido en el ejercicio de Frameworks de desarrollo. 
 
                 
 1. Descargar el respoitorio
@@ -10,31 +10,32 @@ El presente documento contiene los pasos necesarios para inicializar el backend 
 
 El sistema no es más que un CRUD de una entidad denominada Car. Cada car posee tres atributos (name, brand y year).
 
-Para crear un car:
+**Para crear un car:**
 
 curl -d '{"name":"Delta Integrale", "brand":"Lancia", "year": 1976}' -H "Content-Type: application/json" -X POST http://localhost:8005/api/car/
 
-Para obtener el listado de cars:
+*Para obtener el listado de cars:*
 
 curl  -X GET http://localhost:8005/api/car/
 
-Para actualizar un car:
+**Para actualizar un car:**
 
 curl -d '{"name":"Palio", "brand":"Fiat", "year": 1996}' -H "Content-Type: application/json" -X PUT http://localhost:8005/api/car/1/ 
 
 * el 1 que se observa en la url representa el id del recurso a actualizar. Colocar el que corresponda.
 
-Para obtener un car:
+**Para obtener un car:**
 
 curl -X GET http://localhost:8005/api/car/1/ 
 
 * el 1 que se observa en la url representa el id del recurso a obtener. Colocar el que corresponda.
 
-Para eliminar un car:
+**Para eliminar un car:**
 
 curl -X DELETE http://localhost:8005/api/car/1/
 
 * el 1 que se observa en la url representa el id del recurso a obtener. Colocar el que corresponda.
+
 
 El CRUD no requiere autenticación.
 
@@ -55,6 +56,8 @@ Este endpoint devolverá un token el cual debe utilizarse en la petición a /api
 curl -H "Authorization: Token 87031b3aa84546c0850a1025e672d34db3cd9999" -X DELETE http://localhost:8005/api/car/all_delete_with_permission/
 
 
-Una pequeña documentacion de la api se puede observar desde:
+**Una pequeña documentacion de la api se puede observar desde:**
 
 http://127.0.0.1:8005/swagger/
+
+
